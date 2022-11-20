@@ -4,8 +4,8 @@ import random
 import graph
 
 K = 2
-epoch = 20
-testCaseNo = 0
+epoch = 1000
+testCaseNo = 11
 
 W = 0
 N = 10005
@@ -91,6 +91,8 @@ def beam_search():
                             candidates.append((state.addNode(candidateNode), child))
             is_ok = False
             for candidate, node  in candidates:
+                print(candidate)
+                print(len(candidate.flag_set))
                 if candidate.isFound(bestState):
                     is_ok = True
                     bestState = candidate
@@ -100,6 +102,7 @@ def beam_search():
 
             candidates = sorted(candidates, reverse=True, key=lambda x:x[0].ratio)
             queue = candidates[:min(len(candidates), K)]
+            # print(bestState)
 
 
     print(bestState.value)
