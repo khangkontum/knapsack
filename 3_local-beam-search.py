@@ -11,7 +11,6 @@ W = 0
 N = 10005
 m = 0 
 n = 0
-flag_labels = [0 for _ in range(N)]
 bestOfLabel = []
 arr = []
 
