@@ -3,7 +3,7 @@ import copy
 import random
 import graph
 
-K = 2
+K = 100
 epoch = 1000
 testCaseNo = 11
 
@@ -91,8 +91,8 @@ def beam_search():
                             candidates.append((state.addNode(candidateNode), child))
             is_ok = False
             for candidate, node  in candidates:
-                print(candidate)
-                print(len(candidate.flag_set))
+                if (len(candidate.label_set) >= 6):
+                    print(candidateNode)
                 if candidate.isFound(bestState):
                     is_ok = True
                     bestState = candidate
