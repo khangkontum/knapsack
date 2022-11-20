@@ -1,6 +1,7 @@
 import time
 import copy
 import random
+import graph
 
 K = 2
 epoch = 20
@@ -73,32 +74,34 @@ def beam_search():
     bestState = State(TreeNode())
 
     for j in range(epoch):
+        G = graph.Graph()
         K_random_states = random.sample(range(1, n), K)
         for index in K_random_states:
-            queue.append(State(arr[index]))
+            node = G.addNode(f"w: {arr[index].weight}, v: {arr[index].value}")
+            queue.append((State(arr[index]), node))
             
         while(True and len(queue)):
             candidates = []
             while(len(queue)):
-                state = queue.pop(0)        
+                state, parent = queue.pop(0)        
                 for i in range(1, m + 1):
                     for candidateNode in bestOfLabel[i]:
                         if state.isAddable(candidateNode):
-                            candidates.append(state.addNode(candidateNode))
+                            child = G.addNode(f"w: {candidateNode.weight}, v: {candidateNode.value}")
+                            G.addEdge(parent, child)
+                            candidates.append((state.addNode(candidateNode), child))
             is_ok = False
-            for candidate in candidates:
+            for candidate, node  in candidates:
                 if candidate.isFound(bestState):
                     is_ok = True
                     bestState = candidate
+                    G.setNode(node, "red")
             if is_ok:
                 break
 
-            candidates = sorted(candidates, reverse=True, key=lambda x:x.ratio)
+            candidates = sorted(candidates, reverse=True, key=lambda x:x[0].ratio)
             queue = candidates[:min(len(candidates), K)]
 
-            # for x in queue:
-            #     print(x)
-            # print('--------------')
 
     print(bestState.value)
     print(*[int(x in bestState.flag_set) for x in range(0, n)])
