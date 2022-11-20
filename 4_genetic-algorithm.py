@@ -2,9 +2,9 @@ import math
 import numpy as np
 from tqdm import tqdm
 
-K = 1000
-testCaseNo = 11
-epoch = 10000
+K = 10
+testCaseNo = 1
+epoch = 100
 
 W = 0
 m = 0

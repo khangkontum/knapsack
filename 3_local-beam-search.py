@@ -1,10 +1,11 @@
 import time
+from tqdm import tqdm
 import copy
 import random
 import graph
 
 K = 100
-epoch = 1000
+epoch = 100
 testCaseNo = 11
 
 W = 0
@@ -72,7 +73,7 @@ def beam_search():
     queue = []
     bestState = State(TreeNode())
 
-    for j in range(epoch):
+    for j in tqdm(range(epoch)):
         G = graph.Graph()
         K_random_states = random.sample(range(1, n), K)
         for index in K_random_states:
@@ -89,6 +90,7 @@ def beam_search():
                             child = G.addNode(f"w: {candidateNode.weight}, v: {candidateNode.value}")
                             G.addEdge(parent, child)
                             candidates.append((state.addNode(candidateNode), child))
+
             is_ok = False
             for candidate, node  in candidates:
                 if (len(candidate.label_set) >= 6):
@@ -135,7 +137,6 @@ if __name__ == "__main__":
     input()
     start = time.time()
     beam_search()
-    
     print("Execute Time: ", time.time() - start)
 
         
