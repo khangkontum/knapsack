@@ -4,9 +4,9 @@ import copy
 import random
 import graph
 
-K = 100
-epoch = 1
-testCaseNo = 11
+K = 2
+epoch = 20
+testCaseNo = 0
 
 W = 0
 N = 10005
@@ -107,8 +107,9 @@ def beam_search():
             # print(bestState)
 
 
-    print(bestState.value)
-    print(', '.join([str(int(x in bestState.flag_set)) for x in range(0, n)]))
+    with open(f"./output/3/Output_{testCaseNo}.txt", "w+") as f:
+        f.write(str(bestState.value) + '\n')
+        f.write(', '.join([str(int(x in bestState.flag_set)) for x in range(0, n)]))
 
 
 

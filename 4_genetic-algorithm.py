@@ -2,7 +2,7 @@ import numpy as np
 from tqdm import tqdm
 
 K = 10
-testCaseNo = 1
+testCaseNo = 0
 epoch = 100
 
 W = 0
@@ -129,8 +129,9 @@ def process():
         genetic.mutation()
 
     if bestIndivudual.fitness() != 0:
-        print(bestIndivudual.fitness())
-        print(bestIndivudual.presentation)
+        with open(f"./output/4/Output_{testCaseNo}.txt", "w+") as f:
+            f.write(str(bestIndivudual.fitness()) + '\n')
+            f.write(', '.join(str(x) for x in [*bestIndivudual.presentation]))
     else:
         print("not found")
 

@@ -2,9 +2,7 @@ import itertools
 import time
 import numpy as np
 
-K = 10
-epoch = 100
-testCaseNo = 2
+testCaseNo = 0
 
 W = 0
 N = 10005
@@ -81,7 +79,8 @@ if __name__ == "__main__":
     input()
     start = time.time()
     brute()
-    print(bestV)
-    print(', '.join([str(x) for x in bestSol]))
+    with open(f"./output/1/Output_{testCaseNo}.txt", "w+") as f:
+        f.write(str(bestV) + '\n')
+        f.write(', '.join([str(x) for x in bestSol]))
     print("Execution time", time.time() - start)
 

@@ -2,7 +2,7 @@ import time
 from graph import Graph, Node
 import copy
 
-K = 10
+K = 2
 epoch = 100
 testCaseNo = 0
 
@@ -133,11 +133,12 @@ def process():
 
 
     # Print Output
-    print(bestNode.cumV)
-    output = []
-    for index in range(0, n):
-        output.append(str(int(index in bestNode.flag)))
-    print(', '.join(output))
+    with open(f"./output/2/Output_{testCaseNo}.txt", "w+") as f:
+        f.write(str(bestNode.cumV) + '\n')
+        output = []
+        for index in range(0, n):
+            output.append(str(int(index in bestNode.flag)))
+        f.write(', '.join(output))
 
 
 
