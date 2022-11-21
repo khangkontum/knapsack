@@ -90,7 +90,7 @@ def beam_search():
                             child = G.addNode(f"w: {candidateNode.weight}, v: {candidateNode.value}")
                             G.addEdge(parent, child)
                             candidates.append((state.addNode(candidateNode), child))
-                            continue
+                            break
 
             is_ok = False
             for candidate, node  in candidates:
