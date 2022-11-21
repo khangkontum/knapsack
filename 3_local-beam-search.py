@@ -4,9 +4,9 @@ import copy
 import random
 import graph
 
-K = 100
-epoch = 100
-testCaseNo = 11
+K = 2
+epoch = 20
+testCaseNo = 0
 
 W = 0
 N = 10005
@@ -90,6 +90,7 @@ def beam_search():
                             child = G.addNode(f"w: {candidateNode.weight}, v: {candidateNode.value}")
                             G.addEdge(parent, child)
                             candidates.append((state.addNode(candidateNode), child))
+                            continue
 
             is_ok = False
             for candidate, node  in candidates:
