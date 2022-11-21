@@ -111,19 +111,24 @@ def process():
         
         if v.isValid() and v.bound() > bestV:
             vGraphNode = tree.G.addNode(
-                f'value: {v.cumV}, weight:{v.cumW}'
+                f'value: {v.cumV}, weight:{v.cumW}',
+                f'number of class = {len(v.label_set)}'
             )
             color = "white"
+            description = ""
             if bestV < v.cumV:
                 bestV = v.cumV
                 bestNode = v
                 color = "red"
-            tree.G.setNode(vGraphNode, color)
+                description = f'current best\n \
+                with number of class ={len(v.label_set)},\n'
+            tree.G.setNode(vGraphNode, color, description)
             tree.G.addEdge(parentNode, vGraphNode)
             tree.queue.append((v, vGraphNode))
         if u.bound() > bestNode.cumW:
             uGraphNode = tree.G.addNode(
-                f'value: {u.cumV}, weight:{u.cumW}'
+                f'value: {u.cumV}, weight:{u.cumW}',
+                f'number of class = {len(v.label_set)}'
             )
             tree.G.addEdge(parentNode, uGraphNode)
             tree.queue.append((u, uGraphNode))

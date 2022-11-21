@@ -15,8 +15,9 @@ class Graph:
         self.node_list.append(node)
         return node
     
-    def setNode(self, node, color):
+    def setNode(self, node, color, description = ''):
         self.node_list[node.id].color = color
+        self.node_list[node.id].descrpition = description
     
     def addEdge(self, parent, child, edgeValue = ''):
         self.edge_list.append({
