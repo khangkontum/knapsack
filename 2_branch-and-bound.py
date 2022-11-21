@@ -128,14 +128,6 @@ def process():
             tree.G.addEdge(parentNode, uGraphNode)
             tree.queue.append((u, uGraphNode))
 
-            
-    for node in tree.G.node_list:
-        print(node.id, node.name, node.description, node.color)
-    for edge in tree.G.edge_list:
-        a = edge["parent"]
-        b = edge["child"]
-        print(a.id, b.id)
-
 
     # Print Output
     print(bestNode.cumV)
