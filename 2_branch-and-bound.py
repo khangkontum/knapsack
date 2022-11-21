@@ -101,7 +101,7 @@ def process():
     arr = sorted(arr, reverse=True, key = lambda x: x.ratio)
     tree = BranchAndBound()
     bestV = 0
-    bestNode = 0 
+    bestNode = BranchNode(TreeNode())
     while len(tree.queue):
         u, parentNode = tree.queue.pop(0)
         if u.level == n - 1:
@@ -116,9 +116,12 @@ def process():
         )
         
         if v.isValid() and v.bound() > bestV:
+            color = "white"
             if bestV < v.cumV:
                 bestV = v.cumV
                 bestNode = v
+                color = "red"
+            tree.G.setNode(vGraphNode, color)
             tree.G.addEdge(parentNode, vGraphNode)
             tree.queue.append((v, vGraphNode))
         if u.bound() > bestNode.cumW:
@@ -126,6 +129,15 @@ def process():
             tree.queue.append((u, uGraphNode))
 
             
+    for node in tree.G.node_list:
+        print(node.id, node.name, node.description, node.color)
+    for edge in tree.G.edge_list:
+        a = edge["parent"]
+        b = edge["child"]
+        print(a.id, b.id)
+
+
+    # Print Output
     print(bestNode.cumV)
     output = []
     for index in range(0, n):

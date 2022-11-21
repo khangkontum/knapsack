@@ -19,4 +19,8 @@ class Graph:
         self.node_list[node.id].color = color
     
     def addEdge(self, parent, child, edgeValue = ''):
-        self.edge_list.append({parent, child, edgeValue})
+        self.edge_list.append({
+            "parent": parent, 
+            "child": child,
+            "edge": edgeValue
+            })

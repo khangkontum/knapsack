@@ -39,24 +39,33 @@ def brute():
     global W
     global bestV
     global bestSol
+    global m
 
     lst = map(list, itertools.product([0,1], repeat = n))
     for i in lst:
         bitset = np.asarray(i)
         curW, curV = 0, 0
+        label_set = set()
         for index, bit in enumerate(bitset):
             curW += bit * arr[index].weight
             curV += bit * arr[index].value
-        if curW <= W and curV > bestV:
+            if bit == 1:
+                label_set.add(arr[index].label)
+        curBest = False
+        if curW <= W and curV > bestV and len(label_set) == m:
             bestV = curV
             bestSol = bitset
+            curBest = True
+        print(bitset, curBest, curV, curW)
+        
 
 def input():
     global W, m
     global n
     global arr, bestOfLabel
 
-    with open(f'./input/Input_{testCaseNo}.txt', 'r') as f:
+    # with open(f'./input/Input_{testCaseNo}.txt', 'r') as f:
+    with open(f'./inputTree/Input_Tree_0.txt', 'r') as f:
         W = int(f.readline())
         m = int(f.readline())
         weights = f.readline().split(', ')
@@ -75,6 +84,6 @@ if __name__ == "__main__":
     start = time.time()
     brute()
     print(bestV)
-    print(bestSol)
+    print(', '.join([str(x) for x in bestSol]))
     print("Execution time", time.time() - start)
 
