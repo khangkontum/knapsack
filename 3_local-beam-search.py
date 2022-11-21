@@ -4,9 +4,9 @@ import copy
 import random
 import graph
 
-K = 2
-epoch = 20
-testCaseNo = 0
+K = 100
+epoch = 1
+testCaseNo = 11
 
 W = 0
 N = 10005
@@ -94,8 +94,6 @@ def beam_search():
 
             is_ok = False
             for candidate, node  in candidates:
-                if (len(candidate.label_set) >= 6):
-                    print(candidateNode)
                 if candidate.isFound(bestState):
                     is_ok = True
                     bestState = candidate
@@ -109,7 +107,7 @@ def beam_search():
 
 
     print(bestState.value)
-    print(*[int(x in bestState.flag_set) for x in range(0, n)])
+    print(', '.join([str(int(x in bestState.flag_set)) for x in range(0, n)]))
 
 
 
