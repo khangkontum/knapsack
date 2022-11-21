@@ -2,8 +2,6 @@ import time
 from graph import Graph, Node
 import copy
 
-K = 2
-epoch = 100
 testCaseNo = 0
 
 W = 0
