@@ -97,7 +97,8 @@ def beam_search():
                 if candidate.isFound(bestState):
                     is_ok = True
                     bestState = candidate
-                    G.setNode(node, "red")
+                    G.setNode(node, "red", f"current best with number of\
+                              class={len(candidate.label_set)}")
             if is_ok:
                 break
 

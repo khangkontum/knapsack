@@ -119,9 +119,7 @@ def process():
             if bestV < v.cumV:
                 bestV = v.cumV
                 bestNode = v
-                color = "red"
-                description = f'current best\n \
-                with number of class ={len(v.label_set)},\n'
+                color = "blue"
             tree.G.setNode(vGraphNode, color, description)
             tree.G.addEdge(parentNode, vGraphNode)
             tree.queue.append((v, vGraphNode))

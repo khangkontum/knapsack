@@ -4,7 +4,7 @@ import numpy as np
 
 K = 10
 epoch = 100
-testCaseNo = 0
+testCaseNo = 2
 
 W = 0
 N = 10005
@@ -61,14 +61,15 @@ def input():
     global n
     global arr, bestOfLabel
 
-    # with open(f'./input/Input_{testCaseNo}.txt', 'r') as f:
-    with open(f'./inputTree/Input_Tree_0.txt', 'r') as f:
+    with open(f'./input/Input_{testCaseNo}.txt', 'r') as f:
+    # with open(f'./inputTree/Input_Tree_0.txt', 'r') as f:
         W = int(f.readline())
         m = int(f.readline())
         weights = f.readline().split(', ')
         values = f.readline().split(', ')
         labels = f.readline().split(', ')
         n = len(labels)
+        print("n = ", n)
         i = 0
         for w, v, c in zip(weights, values, labels):
             arr.append(TreeNode(int(w), int(v), int(i), int(c)))
