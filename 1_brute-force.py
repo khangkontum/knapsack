@@ -1,4 +1,5 @@
 import itertools
+import time
 import numpy as np
 
 K = 10
@@ -71,7 +72,9 @@ def input():
 
 if __name__ == "__main__":
     input()
+    start = time.time()
     brute()
     print(bestV)
     print(bestSol)
+    print("Execution time", time.time() - start)
 
