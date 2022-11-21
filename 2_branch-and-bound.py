@@ -108,14 +108,11 @@ def process():
             continue
         v = tree.addNode(u, BranchNode(arr[u.level + 1]))
         u = tree.skipNode(u)
-        uGraphNode = tree.G.addNode(
-            f'value: {u.cumV}, weight:{u.cumW}'
-        )
-        vGraphNode = tree.G.addNode(
-            f'value: {v.cumV}, weight:{v.cumW}'
-        )
         
         if v.isValid() and v.bound() > bestV:
+            vGraphNode = tree.G.addNode(
+                f'value: {v.cumV}, weight:{v.cumW}'
+            )
             color = "white"
             if bestV < v.cumV:
                 bestV = v.cumV
@@ -125,6 +122,9 @@ def process():
             tree.G.addEdge(parentNode, vGraphNode)
             tree.queue.append((v, vGraphNode))
         if u.bound() > bestNode.cumW:
+            uGraphNode = tree.G.addNode(
+                f'value: {u.cumV}, weight:{u.cumW}'
+            )
             tree.G.addEdge(parentNode, uGraphNode)
             tree.queue.append((u, uGraphNode))
 
