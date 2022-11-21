@@ -51,13 +51,6 @@ def brute():
             curV += bit * arr[index].value
             if bit == 1:
                 label_set.add(arr[index].label)
-        curBest = False
-        if curW <= W and curV > bestV and len(label_set) == m:
-            bestV = curV
-            bestSol = bitset
-            curBest = True
-        print(bitset, curBest, curV, curW)
-        
 
 def input():
     global W, m
